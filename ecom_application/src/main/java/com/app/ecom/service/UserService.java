@@ -1,7 +1,10 @@
 package com.app.ecom.service;
 
+import com.app.ecom.dto.AddressDto;
 import com.app.ecom.dto.UserRequestDto;
 import com.app.ecom.dto.UserResponseDto;
+import com.app.ecom.model.Address;
+import com.app.ecom.model.Product;
 import com.app.ecom.model.User;
 import com.app.ecom.model.UserRole;
 import com.app.ecom.repository.UserRepository;
@@ -59,7 +62,17 @@ public class UserService {
         userResponseDto.setRole(savedUser.getRole().name()); // Assuming UserRole is an enum
         userResponseDto.setEmail(savedUser.getEmail());
         userResponseDto.setSalary(savedUser.getSalary());
-        userResponseDto.setAddress(savedUser.getAddress());
+        
+        if(savedUser.getAddress() != null) {
+            Address address = savedUser.getAddress();
+            AddressDto addressDto = new AddressDto();
+            addressDto.setStreet(address.getStreet());
+            addressDto.setVillage(address.getVillage());    
+            addressDto.setState(address.getState());
+            addressDto.setZipcode(address.getZipcode());
+            addressDto.setCountry(address.getCountry());
+            userResponseDto.setAddress(addressDto);
+        }
         userResponseDto.setCreatedAt(savedUser.getCreatedAt());
         userResponseDto.setUpdatedAt(savedUser.getUpdatedAt());
         return userResponseDto;
@@ -69,6 +82,11 @@ public class UserService {
        return  repo.findAll().stream().map(this::userResponse).toList();
     }
     public void deleteUser(Long id) {
-        repo.deleteById(id);
+        Optional<User> user = repo.findById(id);
+        if(user.isPresent()) {
+            repo.delete(user.get());
+        } else {
+            throw new RuntimeException("User not found with id: " + id);
+        }
     }
 }

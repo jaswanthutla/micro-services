@@ -14,7 +14,7 @@ public class UserResponseDto
     private double salary;
     private String email;
     private String role; // Assuming role is a String representation of UserRole
-    private Address address;
+    private AddressDto address;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 }
