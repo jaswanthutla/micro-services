@@ -23,11 +23,11 @@ public class UserService {
        User user = new User();
        if(is_user != null)
        {
-          user.setName(userRequestDto.getName());
-          user.setEmail(userRequestDto.getEmail());
-            user.setAddress(userRequestDto.getAddress());
-            user.setSalary(userRequestDto.getSalary()); 
-            user.setRole(UserRole.USER); 
+          is_user.setName(userRequestDto.getName());
+          is_user.setEmail(userRequestDto.getEmail());
+            is_user.setAddress(userRequestDto.getAddress());
+            is_user.setSalary(userRequestDto.getSalary()); 
+            is_user.setRole(UserRole.USER); 
             repo.save(user);
             return userResponse(user);
        }
@@ -60,6 +60,8 @@ public class UserService {
         userResponseDto.setEmail(savedUser.getEmail());
         userResponseDto.setSalary(savedUser.getSalary());
         userResponseDto.setAddress(savedUser.getAddress());
+        userResponseDto.setCreatedAt(savedUser.getCreatedAt());
+        userResponseDto.setUpdatedAt(savedUser.getUpdatedAt());
         return userResponseDto;
     }
     public List<UserResponseDto> getAllUsers()

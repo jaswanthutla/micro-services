@@ -1,5 +1,8 @@
 package com.app.ecom.dto;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 import com.app.ecom.model.Address;
 
 import lombok.Data;
@@ -12,4 +15,6 @@ public class UserResponseDto
     private String email;
     private String role; // Assuming role is a String representation of UserRole
     private Address address;
+    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
 }
