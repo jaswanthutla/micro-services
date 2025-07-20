@@ -2,32 +2,33 @@ package com.app.ecom.model;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import lombok.Data;
+@Entity(name = "orders")
 @Data
-@Entity
-public class CartItem 
-{
+public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @ManyToOne
-    @JoinColumn(name = "user_id",nullable = false)
+    @JoinColumn(name="user_id")
     private User user;
-    @ManyToOne
-    @JoinColumn(name = "product_id", nullable = false)
-    private Product product;
-    private Integer quantity;
-    private BigDecimal totalPrice;
+    private BigDecimal totalAmount;
+    private OrderStatus status=OrderStatus.INPROGESS;
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<OrderItem> orderItems;
     @CreationTimestamp
     private LocalDateTime createdAt;
     @UpdateTimestamp

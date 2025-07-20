@@ -4,7 +4,6 @@ import com.app.ecom.dto.AddressDto;
 import com.app.ecom.dto.UserRequestDto;
 import com.app.ecom.dto.UserResponseDto;
 import com.app.ecom.model.Address;
-import com.app.ecom.model.Product;
 import com.app.ecom.model.User;
 import com.app.ecom.model.UserRole;
 import com.app.ecom.repository.UserRepository;
@@ -26,13 +25,14 @@ public class UserService {
        User user = new User();
        if(is_user != null)
        {
+
           is_user.setName(userRequestDto.getName());
           is_user.setEmail(userRequestDto.getEmail());
             is_user.setAddress(userRequestDto.getAddress());
             is_user.setSalary(userRequestDto.getSalary()); 
             is_user.setRole(UserRole.USER); 
-            repo.save(user);
-            return userResponse(user);
+            User user1=repo.save(is_user);
+            return userResponse(user1);
        }
         user.setName(userRequestDto.getName());
         user.setEmail(userRequestDto.getEmail());

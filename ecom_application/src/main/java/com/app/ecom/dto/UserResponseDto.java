@@ -11,7 +11,7 @@ public class UserResponseDto
 {
     private Long id;
     private String name;
-    private double salary;
+    private Double salary;
     private String email;
     private String role; // Assuming role is a String representation of UserRole
     private AddressDto address;

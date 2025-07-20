@@ -1,12 +1,22 @@
 package com.app.ecom.repository;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import com.app.ecom.model.CartItem;
+import com.app.ecom.model.Product;
+import com.app.ecom.model.User;
 
 @Repository
 public interface CartItemRepository extends JpaRepository<CartItem, Long> {
-    // Additional query methods can be defined here if needed
+
+    CartItem findByUserAndProduct(User user,Product product);
+
+    List<CartItem> findByUser(User user);
+
+    User deleteByUser(User user);
+    
     
 }

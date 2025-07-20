@@ -23,7 +23,7 @@ public class Product {
     private BigDecimal price;
     private String category;
     private String imageUrl;
-    private int stockQuantity;
+    private Integer stockQuantity;
     private Boolean active = true;
     @CreationTimestamp
     private String createdAt;

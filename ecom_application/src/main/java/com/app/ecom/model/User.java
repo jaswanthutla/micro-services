@@ -26,8 +26,5 @@ public class User
     private LocalDateTime createdAt;
     @UpdateTimestamp
     private LocalDateTime updatedAt;
-    public void setIsactive(boolean b) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'setIsactive'");
-    }
+    
 }

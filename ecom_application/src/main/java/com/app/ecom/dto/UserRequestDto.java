@@ -11,7 +11,7 @@ public class UserRequestDto
 {
     private Long id;
     private String name;
-    private double salary;
+    private Double salary;
     private String email;
     private Address address;
     private LocalDateTime createdAt;

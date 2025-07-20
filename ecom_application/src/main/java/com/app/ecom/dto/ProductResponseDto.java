@@ -14,7 +14,7 @@ public class ProductResponseDto {
     private String category;
     @Column(name = "image_url")
     private String imageUrl;
-    private int stockQuantity;
+    private Integer stockQuantity;
     private String createdAt;
     private String updatedAt;
     private boolean active;
